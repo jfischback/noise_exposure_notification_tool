@@ -28,7 +28,22 @@
       <div class="col">
         <section class="card" aria-label="Sampling information">
           <div class="row">
-            <label><span class="label">Date</span><span class="input"><input id="date" type="date"></span></label>
+            <label><span class="label">Sampling Date</span><span class="input"><input id="samplingDate" type="date"></span></label>
+            <label><span class="label">Notification Date</span><span class="input"><input id="notificationDate" type="date"></span></label>
+          </div>
+          <div class="row full">
+            <label><span class="label">Facility</span><span class="input"><input id="facility" type="text"></span></label>
+          </div>
+          <div class="row full">
+            <label><span class="label">Area</span><span class="input"><input id="area" type="text"></span></label>
+          </div>
+          <div class="row full">
+            <label><span class="label">Task/Job</span><span class="input"><input id="task" type="text"></span></label>
+          </div>
+          <div class="row full">
+            <label><span class="label">Employee Sampled</span><span class="input"><input id="employee" type="text"></span></label>
+          </div>
+          <div class="row">
             <label><span class="label">Standard</span>
               <span class="input select"><select id="standard">
                 <option value="OSHA" selected>OSHA</option>
@@ -36,17 +51,13 @@
                 <option value="ACGIH">ACGIH</option>
               </select></span>
             </label>
-          </div>
-          <div class="row full">
-            <label><span class="label">Facility</span><span class="input"><input id="facility" type="text"></span></label>
-          </div>
-          <div class="row">
-            <label><span class="label">Area</span><span class="input"><input id="area" type="text"></span></label>
-            <label><span class="label">Employee Sampled</span><span class="input"><input id="employee" type="text"></span></label>
-          </div>
-          <div class="row">
-            <label><span class="label">Task/Job</span><span class="input"><input id="task" type="text"></span></label>
-            <label><span class="label">Shift Length</span><span class="input"><input id="shift" type="text" value="8 Hours"></span></label>
+            <label><span class="label">Shift Length</span>
+              <span class="input select"><select id="shift">
+                <option value="8 Hours" selected>8 Hours</option>
+                <option value="10 Hours">10 Hours</option>
+                <option value="12 Hours">12 Hours</option>
+              </select></span>
+            </label>
           </div>
           <div class="row full">
             <label><span class="label">Measured TWA</span>
