@@ -12,7 +12,10 @@ const LIMITS = {
 };
 
 const NO_ACTION_LEVEL_NOTE =
-  "NIOSH and ACGIH define no action level. An action level of 82 dBA, the 50 percent dose point at a 3 dB exchange rate, is applied here as a conservative convention for enrolling workers in a hearing conservation program.";
+  "NIOSH and ACGIH define no action level. An action level of 82 dBA, the 50 percent dose point at a 3 dB exchange rate, is applied here as a conservative convention for enrolling workers in a hearing conservation program. " +
+  "Applying this action level is optional and serves only as an added margin of safety for employees. " +
+  "NIOSH and ACGIH limits are recommendations, not OSHA regulations, so not applying the 82 dBA action level does not by itself violate OSHA requirements. " +
+  "Check any company policy or contract that may require it.";
 
 // twa is a number, or "" when Measured TWA (C10) is blank.
 function calculate(twa, standard) {
