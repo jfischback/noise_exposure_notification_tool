@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Noise Sampling Notification | OEMS</title>
+  <meta name="description" content="Notify an employee of their noise sampling results against the 82 dBA Action Level and 85 dBA Exposure Limit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <span class="brand-name">OEMS</span>
+        <span class="brand-full">Occupational Exposure Management Systems LLC</span>
+      </div>
+      <div class="tag">Exposure assessment tools for Health &amp; Safety Professionals</div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h1>EHS Notification: Noise Sampling Results</h1>
+      <p class="key"><span class="swatch swatch-entry"></span>Enter information &nbsp; <span class="swatch swatch-calc"></span>Calculated</p>
+    </section>
+
+    <form id="form" autocomplete="off" novalidate>
+      <div class="layout">
+        <div class="col">
+          <section class="panel">
+            <div class="grid">
+              <label class="field"><span class="name">Date</span><input class="entry" id="date" type="date"></label>
+              <label class="field"><span class="name">Facility</span><input class="entry" id="facility" type="text"></label>
+              <label class="field"><span class="name">Area</span><input class="entry" id="area" type="text"></label>
+              <label class="field"><span class="name">Employee Sampled</span><input class="entry" id="employee" type="text"></label>
+              <label class="field"><span class="name">Task/Job</span><input class="entry" id="task" type="text"></label>
+              <label class="field"><span class="name">Shift Length</span><input class="entry" id="shift" type="text" value="8 Hours"></label>
+              <label class="field full"><span class="name">Measured TWA</span>
+                <span class="entry box"><input id="twa" type="number" inputmode="decimal" step="any"><span class="unit">dBA</span></span>
+              </label>
+            </div>
+          </section>
+
+          <section class="panel">
+            <p class="section-lead">The results of the noise sampling are shown below:</p>
+            <div class="table three">
+              <div class="cell"><span class="th">Action Level<br>(dBA)</span><span class="calc">82</span></div>
+              <div class="cell"><span class="th">Exposure Limit<br>(dBA)</span><span class="calc">85</span></div>
+              <div class="cell"><span class="th">Your Exposure<br>(dBA)</span><span class="calc" id="yourExposure"></span></div>
+            </div>
+            <div class="table two">
+              <div class="cell"><span class="th">Over/Under<br>Action Level</span><span class="calc result" id="actionResult"></span></div>
+              <div class="cell"><span class="th">Over/Under<br>Exposure Limit</span><span class="calc result" id="limitResult"></span></div>
+            </div>
+          </section>
+
+          <section class="panel statements" id="statements" aria-live="polite"></section>
+
+          <section class="panel closing">
+            <p>We appreciate your cooperation during this sampling event.</p>
+            <p>Questions or concerns regarding the information found in this notification can be directed to your local Area Safety Specialist.</p>
+            <label class="field rep"><span class="name">EHS Representative</span><input class="entry" id="rep" type="text"></label>
+          </section>
+        </div>
+
+        <section class="panel chart-panel">
+          <svg id="chart" viewBox="0 0 400 440" role="img" aria-label="Your Exposure chart: measured TWA compared with the 82 dBA Action Level and 85 dBA Exposure Limit"></svg>
+        </section>
+      </div>
+    </form>
+
+    <footer class="foot">
+      <p>This tool supports, and does not replace, your own professional judgment. Results depend on accurate sampling and the values you enter. All information stays in your browser and is not sent or stored anywhere.</p>
+      <p>© 2026 Occupational Exposure Management Systems LLC. All rights reserved.</p>
+    </footer>
+  </main>
+
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
