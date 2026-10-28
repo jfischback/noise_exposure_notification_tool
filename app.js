@@ -17,8 +17,9 @@ function el(name, attrs, text) {
 }
 
 // Column chart from the sheet: one dark bar for the measured TWA, dashed lines at
-// 82 (orange) and 85 (dark red), Y axis fixed 0 to 100, legend at the bottom.
-function drawChart(value) {
+// the Action Level (orange) and Exposure Limit (dark red), Y axis fixed 0 to 100,
+// legend at the bottom.
+function drawChart(value, actionLevel, exposureLimit) {
   const svg = $("chart");
   svg.replaceChildren();
   const W = 400, H = 440;
@@ -53,8 +54,8 @@ function drawChart(value) {
   }
   svg.append(el("text", { x: left + slot * 1.5, y: top + plotH + 20, class: "c-tick", "text-anchor": "middle" }, "Measured Exposure"));
 
-  svg.append(el("line", { x1: left, x2: W - right, y1: y(ACTION_LEVEL), y2: y(ACTION_LEVEL), class: "c-line", stroke: "#e57f00" }));
-  svg.append(el("line", { x1: left, x2: W - right, y1: y(EXPOSURE_LIMIT), y2: y(EXPOSURE_LIMIT), class: "c-line", stroke: "#cc0000" }));
+  svg.append(el("line", { x1: left, x2: W - right, y1: y(actionLevel), y2: y(actionLevel), class: "c-line", stroke: "#e57f00" }));
+  svg.append(el("line", { x1: left, x2: W - right, y1: y(exposureLimit), y2: y(exposureLimit), class: "c-line", stroke: "#cc0000" }));
 
   // Legend
   const items = [
@@ -73,7 +74,11 @@ function drawChart(value) {
 }
 
 function update() {
-  const r = calculate(twaValue());
+  const r = calculate(twaValue(), $("standard").value);
+  $("actionLevel").textContent = r.actionLevel;
+  $("exposureLimit").textContent = r.exposureLimit;
+  $("note").textContent = r.note;
+  $("note").hidden = !r.note;
   $("yourExposure").textContent = r.yourExposure;
   setResult($("actionResult"), r.actionResult);
   setResult($("limitResult"), r.limitResult);
@@ -82,7 +87,7 @@ function update() {
     p.textContent = s;
     return p;
   }));
-  drawChart(r.chartValue);
+  drawChart(r.chartValue, r.actionLevel, r.exposureLimit);
 }
 
 function setResult(node, value) {
@@ -91,4 +96,5 @@ function setResult(node, value) {
 }
 
 $("form").addEventListener("input", update);
+$("form").addEventListener("change", update);
 update();
