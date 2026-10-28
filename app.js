@@ -87,7 +87,7 @@ function update() {
 
 function setResult(node, value) {
   node.textContent = value;
-  node.className = "calc result" + (value ? " " + value.toLowerCase() : "");
+  node.className = value ? "pill " + value.toLowerCase() : "";
 }
 
 $("form").addEventListener("input", update);
