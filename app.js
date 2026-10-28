@@ -1,9 +1,9 @@
 const $ = (id) => document.getElementById(id);
 const SVG = "http://www.w3.org/2000/svg";
 
-// Blank or non-numeric Measured TWA is treated as blank.
-function twaValue() {
-  const raw = $("twa").value.trim();
+// Blank or non-numeric Measured Lavg is treated as blank.
+function lavgValue() {
+  const raw = $("lavg").value.trim();
   if (raw === "") return "";
   const v = Number(raw);
   return Number.isFinite(v) ? v : "";
@@ -45,17 +45,19 @@ function drawChart(value, actionLevel, exposureLimit) {
   const barTop = y(value);
   const barH = top + plotH - barTop;
   svg.append(el("rect", { x: barX, y: barTop, width: barW, height: barH, fill: "#191919" }));
-  const label = String(value);
+  svg.append(el("text", { x: left + slot * 1.5, y: top + plotH + 20, class: "c-tick", "text-anchor": "middle" }, "Measured Exposure"));
+
+  svg.append(el("line", { x1: left, x2: W - right, y1: y(actionLevel), y2: y(actionLevel), class: "c-line", stroke: "#e57f00" }));
+  svg.append(el("line", { x1: left, x2: W - right, y1: y(exposureLimit), y2: y(exposureLimit), class: "c-line", stroke: "#cc0000" }));
+
+  // Value label goes on top of the limit lines so they never hide it.
+  const label = value === 0 ? "0" : value.toFixed(1);
   if (barH >= 24) {
     svg.append(el("text", { x: barX + barW / 2, y: barTop + 18, class: "c-label", "text-anchor": "middle" }, label));
   } else {
     // Too short to fit the label inside, so it sits just above the bar.
     svg.append(el("text", { x: barX + barW / 2, y: barTop - 6, class: "c-label dark", "text-anchor": "middle" }, label));
   }
-  svg.append(el("text", { x: left + slot * 1.5, y: top + plotH + 20, class: "c-tick", "text-anchor": "middle" }, "Measured Exposure"));
-
-  svg.append(el("line", { x1: left, x2: W - right, y1: y(actionLevel), y2: y(actionLevel), class: "c-line", stroke: "#e57f00" }));
-  svg.append(el("line", { x1: left, x2: W - right, y1: y(exposureLimit), y2: y(exposureLimit), class: "c-line", stroke: "#cc0000" }));
 
   // Legend
   const items = [
@@ -74,12 +76,12 @@ function drawChart(value, actionLevel, exposureLimit) {
 }
 
 function update() {
-  const r = calculate(twaValue(), $("standard").value);
+  const r = calculate(lavgValue(), Number($("shift").value), $("standard").value);
   $("actionLevel").textContent = r.actionLevel;
   $("exposureLimit").textContent = r.exposureLimit;
   $("note").textContent = r.note;
   $("note").hidden = !r.note;
-  $("yourExposure").textContent = r.yourExposure;
+  $("yourExposure").textContent = r.yourExposure === "" ? "" : r.yourExposure.toFixed(1);
   setResult($("actionResult"), r.actionResult);
   setResult($("limitResult"), r.limitResult);
   $("statements").replaceChildren(...r.statements.map((s) => {

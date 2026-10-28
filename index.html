@@ -53,15 +53,17 @@
             </label>
             <label><span class="label">Shift Length</span>
               <span class="input select"><select id="shift">
-                <option value="8 Hours" selected>8 Hours</option>
-                <option value="10 Hours">10 Hours</option>
-                <option value="12 Hours">12 Hours</option>
+                <option value="8" selected>8 Hours</option>
+                <option value="10">10 Hours</option>
+                <option value="12">12 Hours</option>
               </select></span>
             </label>
           </div>
           <div class="row full">
-            <label><span class="label">Measured TWA</span>
-              <span class="input"><input id="twa" type="number" inputmode="decimal" step="any" placeholder="Enter TWA"><span class="unit">dBA</span></span>
+            <label><span class="label">Measured Lavg</span>
+              <span class="hint">The average sound level over the whole shift, as shown on the dosimeter. Do not enter the dosimeter's TWA: it is already normalized to 8 hours and would be counted twice.</span>
+              <span class="input"><input id="lavg" type="number" inputmode="decimal" step="any" placeholder="Enter Lavg"><span class="unit">dBA</span></span>
+              <span class="note">The Lavg must be recorded at the same exchange rate as the standard selected: 5 dB for OSHA, 3 dB for NIOSH or ACGIH.</span>
             </label>
           </div>
         </section>

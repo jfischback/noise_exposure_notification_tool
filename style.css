@@ -82,6 +82,8 @@ label { display: block; min-width: 0; }
 }
 .input input::placeholder { color: #a3a8ae; }
 .input .unit { font-size: 12.5px; color: var(--muted); margin-left: 8px; }
+.hint { display: block; font-size: 12.5px; color: var(--muted); margin: -4px 0 12px; }
+.note { display: block; font-size: 12.5px; color: var(--soft); margin: 10px 0 0; }
 .input.select { padding: 0; }
 .input select {
   flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent;
@@ -133,8 +135,8 @@ input[type=number] { -moz-appearance: textfield; appearance: textfield; }
 .c-axis { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; fill: #4d5257; }
 .c-grid { stroke: var(--line); stroke-width: 1; }
 .c-line { stroke-width: 3; stroke-dasharray: 10 6; }
-.c-label { font-size: 14px; font-weight: 700; fill: #fff; }
-.c-label.dark { fill: var(--ink); }
+.c-label { font-size: 14px; font-weight: 700; fill: #fff; stroke: #191919; stroke-width: 4px; stroke-linejoin: round; paint-order: stroke; }
+.c-label.dark { fill: var(--ink); stroke: #fff; }
 
 /* Footer */
 footer { padding: 56px 0 40px; }
