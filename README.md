@@ -9,3 +9,4 @@ Plain HTML, CSS, and JavaScript with no build step. Open `index.html` in a brows
 - `calc.js`: the over/under and statement logic, with the sheet cell each piece comes from
 - `app.js`: connects the form to the logic and draws the chart (SVG)
 - `style.css`: the styles
+- `disclaimer.css`, `disclaimer.js`: the first-visit disclaimer gate (agreement is saved in localStorage as `oems_disclaimer_v1`)
