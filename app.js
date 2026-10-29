@@ -99,4 +99,6 @@ function setResult(node, value) {
 
 $("form").addEventListener("input", update);
 $("form").addEventListener("change", update);
+// Opens the print dialog; choose "Save as PDF" there. Print styles leave out the header.
+$("pdf").addEventListener("click", () => window.print());
 update();
